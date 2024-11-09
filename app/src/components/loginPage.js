@@ -5,26 +5,41 @@ import './components.css'
 import logo from '../images/BullForceLogo.png'
 import slogon from '../images/BullForceLogoName.png'
 import Swal from 'sweetalert2'
+import * as yup from 'yup';
+const userLoginValidationSchema = yup.object().shape({
+    email: yup.string().email('Invalid email format').required('Email is required')
+})
 export default function LoginPage(){
     const navigate=useNavigate();
     const [email,setEmail]=useState('')
+    const [formErrors, setFormErrors] = useState({});
     const handleSubmit=async(e)=>{
         e.preventDefault()
         try{
+            await userLoginValidationSchema.validate({email}, { abortEarly: false });
             const response=await axios.post(`http://localhost:3050/api/otpGenerate`,{email})
             console.log(response.data.email)
             setEmail('')
             navigate('/otpVerify',{ state: { email: response.data.email } })
             localStorage.setItem('email', email);
         }catch(err){
-            Swal.fire({
-                icon: 'error',
-                title: 'Error',
-                text: err.response.data.error,
-              })
-              if(err.response.data.error=='An OTP is already active for this email.'){
-                navigate('/otpVerify')
+            if (err.name === 'ValidationError') {
+                const errors = {};
+                err.inner.forEach((e) => {
+                  errors[e.path] = e.message;
+                });
+                setFormErrors(errors);
+              }else{
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Error',
+                    text: err.response.data.error,
+                  })
+                  if(err.response.data.error=='An OTP is already active for this email.'){
+                    navigate('/otpVerify')
+                  }
               }
+            
         }
     }
     return(
@@ -38,7 +53,9 @@ export default function LoginPage(){
                 <input type='text'
                 value={email}
                 onChange={(e)=>{setEmail(e.target.value)}}
-                id='login-input'/><br/>
+                id='login-input'/>
+                {formErrors.email && <div style={{color:'royalblue'}}>{formErrors.email}</div>}
+                <br/>
                 <button id="login-button">Login</button>
                 </form>
                 
