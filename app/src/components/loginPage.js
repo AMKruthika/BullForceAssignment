@@ -22,6 +22,7 @@ export default function LoginPage(){
             const response=await axios.post(`http://localhost:3050/api/otpGenerate`,{email})
             console.log('response',response.data)
             userDispatch({type:'ADD_USER',payload:response.data})
+           
             console.log(user?.data?.email)
             setEmail('')
             navigate('/otpVerify')
@@ -39,7 +40,7 @@ export default function LoginPage(){
                 Swal.fire({
                     icon: 'error',
                     title: 'Error',
-                    text: err?.response?.data?.error,
+                    text: err?.response?.data?.error || 'something went wrong !',
                   })
                   if(err?.response?.data?.error=='An OTP is already active for this email.'){
                     navigate('/otpVerify')

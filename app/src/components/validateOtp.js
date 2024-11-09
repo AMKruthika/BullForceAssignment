@@ -21,7 +21,7 @@ export default function ValidateOTP() {
   console.log(user)
   const data=user?.data
   console.log(data)
-  const email = data?.[0]?.email;
+  const email = data?.[data?.length-1]?.email;
   console.log(email)
   const [otp, setOtp] = useState('');
   const [digit1, setDigit1] = useState('0');
