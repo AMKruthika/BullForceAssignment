@@ -1,0 +1,126 @@
+#body{
+background-image: url("../images/BullForce-BackgroundImg.png");
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center;
+min-height: 100vh;
+display:flex;
+justify-content: center;
+align-items: center;
+}
+#card{
+width: 472px;
+height: 560px;
+top: 128px;
+left: 485px;
+border: 1px solid #F4BC2E;
+border-radius: 10px;
+background: linear-gradient(0deg, rgba(179, 121, 48, 0.9) 40.71%, rgba(27, 38, 54, 0.9) 113.48%);
+}
+#login-logo{
+width: 72.62px;
+height: 79.26px;
+margin-top: 30px;
+left: 685.36px;
+}
+#login-slogon{
+width: 173px;
+height: 64.45px;
+margin-top: 15px;
+left: 635px;
+}
+#login-text{
+font-family: Inter;
+font-size: 22px;
+font-weight: 900;
+line-height: 26.63px;
+text-align: center;
+color: #FFFFFF;
+margin-top: 20px;
+}
+#login-text2{
+    font-family: Inter;
+    font-size: 24px;
+    font-weight: 400;
+    line-height: 20px;
+    text-align: center;
+    color: #FFFFFF;
+    margin-top:1px;
+}
+#login-input{
+border: 1px solid #131E2E;
+background: #FFFFFF;
+width: 366px;
+height: 56px;
+top: 484px;
+left: 537px;
+border-radius: 4px;
+border: 1px;
+}
+#login-button{
+background: #F3D45E;
+width: 366px;
+height: 56px;
+margin-top:40px;
+left: 537px;;
+border-radius: 8px;
+}
+#heading{
+color: #FFFFFF;
+font-family: Inter;
+font-size: 22px;
+font-weight: 900;
+line-height: 26.63px;
+text-align: center;
+}
+#heading2{
+font-family: Inter;
+font-size: 20px;
+font-weight: 400;
+line-height: 32px;
+text-align: center;
+color: #81838F;
+}
+#mail-id{
+font-family: Inter;
+font-size: 20px;
+font-weight: 400;
+line-height: 32px;
+text-align: center;
+color:#FFFFFF;
+}
+.otp-input{
+background: #FFFFFF;
+width: 64px;
+height: 62px;
+margin-left: 10px;
+text-align: center;
+color: #999999;
+gap: 0px;
+border-radius: 6px 0px 0px 0px;
+}
+#validate-button{
+    width: 366px;
+height: 56px;
+margin-top: 35px;
+left: 538px;
+gap: 0px;
+border-radius: 8px 0px 0px 0px;
+opacity: 0px;
+background: #F3D45E;
+font-family: Inter;
+font-size: 18px;
+font-weight: 700;
+line-height: 20px;
+text-align: center;
+}
+#dashboard{
+display:flex;
+justify-content: center;
+align-items: center;
+margin-top: 200px;
+font-family: Inter;
+font-size: 20px;
+font-weight: 400;
+color:darkolivegreen
+}
