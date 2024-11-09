@@ -1,12 +1,12 @@
 import './components.css';
 import logo from '../images/BullForceLogo.png';
 import slogon from '../images/BullForceLogoName.png';
-import { useLocation, useNavigate } from 'react-router-dom';
-import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useState, useEffect, useRef,useContext} from 'react';
 import axios from 'axios';
 import Swal from 'sweetalert2';
 import * as yup from 'yup';
-
+import UserContext from '../contexts/userContext'
 const otpValidationSchema = yup.object().shape({
   digit1: yup.string().length(1, 'OTP digit must be a single character').required('Digit 1 is required'),
   digit2: yup.string().length(1, 'OTP digit must be a single character').required('Digit 2 is required'),
@@ -15,10 +15,14 @@ const otpValidationSchema = yup.object().shape({
 });
 
 export default function ValidateOTP() {
-  const location = useLocation();
-  const email = location.state?.email;
   const navigate = useNavigate();
   const inputRefs = useRef([]);
+  const {user,userDispatch}=useContext(UserContext)
+  console.log(user)
+  const data=user?.data
+  console.log(data)
+  const email = data?.[0]?.email;
+  console.log(email)
   const [otp, setOtp] = useState('');
   const [digit1, setDigit1] = useState('0');
   const [digit2, setDigit2] = useState('0');
@@ -86,7 +90,7 @@ export default function ValidateOTP() {
         <img src={slogon} alt="slogon" id="login-slogon" />
         <p id="heading">OTP</p>
         <p id="heading2">Please enter the OTP sent to</p>
-        <p id="mail-id">{email}</p>
+        <p id="mail-id">{email|| 'Loading email...'}</p>
         <form onSubmit={handleSubmit}>
           <input
             className="otp-input"

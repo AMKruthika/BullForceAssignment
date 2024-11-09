@@ -4,9 +4,18 @@ import Header from './Header/header'
 import LoginPage from '../src/components/loginPage'
 import ValidateOTP from '../src/components/validateOtp'
 import Dashboard from '../src/components/dashboard'
+import { useReducer } from 'react';
+import userReducer from './Reducers/userReducer';
+import UserContext from './contexts/userContext';
 function App() {
+  const userInitialState={
+    data:[],
+    serverErrors:[]
+  }
+  const [user,userDispatch]=useReducer(userReducer,userInitialState)
   return (
-    <div className="App">
+    <UserContext.Provider value={{ user, userDispatch }}>
+       <div className="App">
      <Header/>
      <Routes>
      <Route path="/" element={<LoginPage />} /> 
@@ -14,6 +23,8 @@ function App() {
       <Route path='/dashboard' element={<Dashboard/>}/>
      </Routes>
     </div>
+    </UserContext.Provider>
+   
   );
 }
 
